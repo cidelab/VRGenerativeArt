@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2015
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VRGenr8Art", "VRGenr8Art.csproj", "{A3FE92A9-9B8B-16AC-1E7F-235B38574B97}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VRGenr8Art.Editor", "VRGenr8Art.Editor.csproj", "{621E0C0C-21DB-EEB7-9299-3F948E1946F6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A3FE92A9-9B8B-16AC-1E7F-235B38574B97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3FE92A9-9B8B-16AC-1E7F-235B38574B97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3FE92A9-9B8B-16AC-1E7F-235B38574B97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3FE92A9-9B8B-16AC-1E7F-235B38574B97}.Release|Any CPU.Build.0 = Release|Any CPU
+		{621E0C0C-21DB-EEB7-9299-3F948E1946F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{621E0C0C-21DB-EEB7-9299-3F948E1946F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{621E0C0C-21DB-EEB7-9299-3F948E1946F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{621E0C0C-21DB-EEB7-9299-3F948E1946F6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

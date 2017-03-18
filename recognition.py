@@ -15,9 +15,9 @@ except sr.UnknownValueError:
 except sr.RequestError as e:
     print("Could not request results from Microsoft Bing Voice Recognition service; {0}".format(e))
   
-x = "cube"
+x = "cube" #eventually we put the unity adress for the cube
 if output is "yes":
-    print x 
+    print x  #insert cube into VR
 
 else:
     none 

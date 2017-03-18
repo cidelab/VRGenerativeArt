@@ -25,7 +25,7 @@ else:
 
 k = sr.Recognizer()
 with sr.Microphone() as source:
-    print("Do you want a cube?")
+    print("Do you want to strech the cube?")
     audio = k.listen(source)
 
 # recognize speech using Microsoft Bing Voice Recognition

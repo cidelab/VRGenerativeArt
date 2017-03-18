@@ -3,7 +3,7 @@ import speech_recognition as sr
 # obtain audio from the microphone
 r = sr.Recognizer()
 with sr.Microphone() as source:
-    print("Say something!")
+    print("Do you want a cube?")
     audio = r.listen(source)
 
 # recognize speech using Microsoft Bing Voice Recognition
@@ -16,8 +16,10 @@ except sr.RequestError as e:
     print("Could not request results from Microsoft Bing Voice Recognition service; {0}".format(e))
   
 x = "cube" #eventually we put the unity adress for the cube
-if output is "yes":
-    print x  #insert cube into VR
+if output == "yes":
+    print (x)  #insert cube into VR
 
 else:
-    none 
+    None 
+
+

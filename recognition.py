@@ -1,4 +1,5 @@
 import speech_recognition as sr
+import requests
 from time import time
 
 ##### HELPER FUNCTIONS TO CONVERT SPEECH TO TEXT USIGN MSFT BING SPEECH API
@@ -29,34 +30,31 @@ def convertToText(audio):
         output = None
     return output
 
-def updateConnectionFile(line, input, file_path):
-    """
-    Updates the file, which is constantly read by unity
-    """
-    with open(file_path, 'w') as f:
-        f.write(input)
+def sendRequest(url):
+	r = requests.get(url)
 
-    return
+def sendWords(words):
+	"""
+	Send words to unity, which is constantly read by unity
+	"""
+	print('get words : ' + words)
+	url = 'http://localhost:4000?words=' + words
+	sendRequest(url)
+	return
 
-def listenAndCompute(file_path):
+def listenAndCompute():
     while True:
         audio = listenMicrophone()
         output = convertToText(audio)
-        if output != None:
-            continue
         if output:
-            process(output)
             if output != 'stop':
-                updateConnectionFile(output, file_path)
-
+                sendWords(output)
             else:
                 break
     return
 
 if __name__ == "__main__":
-    file_path = '.. whatever path you have'
     BING_KEY = "d6d31a805fca4a9187b7c797fcc50bef" # Microsoft Bing Voice Recognition API keys 32-character lowercase hexadecimal strings
     r = sr.Recognizer()
-
     # function to update the file
-    listenAndCompute(file_path)
+    listenAndCompute()

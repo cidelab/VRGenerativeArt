@@ -23,7 +23,7 @@ def convertToText(audio):
     try:
         output = r.recognize_bing(audio, key=BING_KEY, language = "en-US", show_all = False)
     except sr.UnknownValueError:
-        print("Microsoft Bing Voice Recognition could not understand audio")
+        # print("Microsoft Bing Voice Recognition could not understand audio")
         output = None
     except sr.RequestError as e:
         print("Could not request results from Microsoft Bing Voice Recognition service; {0}".format(e))
@@ -47,7 +47,7 @@ def listenAndCompute():
         audio = listenMicrophone()
         output = convertToText(audio)
         if output:
-            if output != 'stop':
+            if output is not 'stop':
                 sendWords(output)
             else:
                 break

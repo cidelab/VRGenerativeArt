@@ -37,7 +37,7 @@ except sr.UnknownValueError:
 except sr.RequestError as e:
     print("Could not request results from Microsoft Bing Voice Recognition service; {0}".format(e))
 
-output_2 = r.recognize_bing(audio, key=BING_KEY, language = "en-US", show_all = False)
+output_2 = k.recognize_bing(audio, key=BING_KEY, language = "en-US", show_all = False)
 
 if output_2 == "yes":
     print ("you have streched cube now")

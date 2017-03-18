@@ -15,7 +15,7 @@ public class makeCube : MonoBehaviour
     public float zPos = 1;
 
     private float span = 3;
-
+    private Color clr = new Color(1, 1, 1);
     private GameObject myCube;
     
     public float Red = 1f;
@@ -26,38 +26,77 @@ public class makeCube : MonoBehaviour
     public float rotY = 0;
     public float rotZ = 0;
 
+    Assets.SteamVR.Scripts.StringFilter sf = new Assets.SteamVR.Scripts.StringFilter();
+    public string s = "Can you move left please";
     void Start()
     {
-        myCube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        if (sf.DataProcess("hey build me a box tra la la la") == "box")
+        {
+            myCube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        }
     }
-
-    // Update is called once per frame
-    //cube
-
-    //scale...
-    //scale in X 3 times..
-    //scale in Y 2 times...
-    //scale scale in Z 1.5 times...
-
-    //move...
-    //move left 3, 
-    //move right 2,
-    //move up 5,
 
     void Update()
     {
-        float r = checkMinMax(Red);
-        float g = checkMinMax(Green);
-        float b = checkMinMax(Blue);
 
-        myCube.transform.localScale = new Vector3(xSize, ySize, zSize);
-        myCube.transform.position = new Vector3(xPos, yPos, zPos);
-        myCube.transform.Rotate(Vector3.right, rotX);
-        myCube.transform.Rotate(Vector3.left, rotZ);
-        myCube.transform.Rotate(Vector3.up, rotY);
-        myCube.GetComponent<Renderer>().material.color = new Color(r, g, b, 255);
+        //update parameters...
+        UpdateParameters();
+        
+            float r = checkMinMax(Red);
+            float g = checkMinMax(Green);
+            float b = checkMinMax(Blue);
 
+            myCube.transform.localScale = new Vector3(xSize, ySize, zSize);
+            myCube.transform.position = new Vector3(xPos, yPos, zPos);
+            myCube.transform.Rotate(Vector3.right, rotX);
+            myCube.transform.Rotate(Vector3.left, rotZ);
+            myCube.transform.Rotate(Vector3.up, rotY);
+            myCube.GetComponent<Renderer>().material.color = clr;
     }
+
+    private void UpdateParameters()
+    {
+        switch (sf.DataProcess(s))
+        {
+            case "scale in x":
+                xSize = xSize + span;
+                break;
+            case "scale in y":
+                ySize = ySize + span;
+                break;
+            case "scale in z":
+                zSize = zSize + span;
+                break;
+            case "move left":
+                zPos = zPos + span;
+                break;
+            case "move right":
+                zPos = zPos + span;
+                break;
+            case "move forward":
+                xPos = xPos + span;
+                break;
+            case "move up":
+                yPos = yPos + span;
+                break;
+            case "red":
+                clr = Color.red;
+                break;
+            case "yellow":
+                clr = Color.yellow;
+                break;
+            case "green":
+                clr = Color.green;
+                break;
+            case "orange":
+                clr = Color.green;
+                break;
+            case "blue":
+                clr = Color.blue;
+                break;
+        }
+        s = "";
+    } 
 
     private float checkMinMax(float r)
     {

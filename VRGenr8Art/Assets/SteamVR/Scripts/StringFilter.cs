@@ -9,17 +9,20 @@ namespace Assets.SteamVR.Scripts
     {
         //cube
         string box = "box";
+        string cube = "cube";
 
         //scale...
-        string scaleinX = "scale in x";
-        string scaleinY = "scale in Y";
-        string scaleinZ = "scale in Z";
+        string scaleinX = "scale X";
+        string scaleinY = "scale Y";
+        string scaleinZ = "scale Z";
 
         //move...
         string moveLeft = "move left";
         string moveRight = "move right";
         string moveUp = "move up";
+        string moveDown = "move down";
         string moveForward = "move forward";
+        string moveBackward = "move backward";
 
         //Colors
         string red = "red";
@@ -28,10 +31,15 @@ namespace Assets.SteamVR.Scripts
         string orange = "orange";
         string blue = "blue";
 
+        //Rotate
+        string rotateX = "rotate X";
+        string rotateY = "rotate Y";
+        string rotateZ = "rotate Z";
+
         List<string> arrData;
         public StringFilter()
         {
-          arrData  = new List<string>(){box, scaleinX, scaleinY, scaleinZ, moveForward, moveLeft, moveRight, moveUp, red, yellow, orange, green, blue };
+          arrData  = new List<string>(){ cube, rotateZ, rotateY, rotateX, box, scaleinX, scaleinY, scaleinZ, moveForward, moveBackward, moveLeft, moveRight, moveUp, moveDown, red, yellow, orange, green, blue };
         }
 
         public string DataProcess(string strM)

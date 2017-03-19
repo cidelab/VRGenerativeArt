@@ -27,7 +27,7 @@ public class makeCube : MonoBehaviour
     public float rotZ = 0;
 
     Assets.SteamVR.Scripts.StringFilter sf = new Assets.SteamVR.Scripts.StringFilter();
-    public string inputString = "";
+    public string inputString = null;
 
     void Start()
     {
@@ -61,15 +61,26 @@ public class makeCube : MonoBehaviour
     }
     private void UpdateParameters()
     {
+        if (inputString == null) return;
+        Debug.Log(sf.DataProcess(inputString));
         switch (sf.DataProcess(inputString))
         {
-            case "scale in x":
+            case "rotate X":
+                rotX = rotX + span;
+                break;
+            case "rotate Y":
+                rotY = rotY + span;
+                break;
+            case "rotate Z":
+                rotZ = rotZ + span;
+                break;
+            case "scale X":
                 xSize = xSize + span;
                 break;
-            case "scale in y":
+            case "scale Y":
                 ySize = ySize + span;
                 break;
-            case "scale in z":
+            case "scale Z":
                 zSize = zSize + span;
                 break;
             case "move left":
@@ -81,8 +92,14 @@ public class makeCube : MonoBehaviour
             case "move forward":
                 xPos = xPos + span;
                 break;
+            case "move backward":
+                xPos = xPos - span;
+                break;
             case "move up":
                 yPos = yPos + span;
+                break;
+            case "move down":
+                yPos = yPos - span;
                 break;
             case "red":
                 clr = Color.red;
@@ -100,7 +117,7 @@ public class makeCube : MonoBehaviour
                 clr = Color.blue;
                 break;
         }
-        inputString = "";
+        inputString = null;
     } 
 
     private float checkMinMax(float r)

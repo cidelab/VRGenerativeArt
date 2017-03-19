@@ -42,7 +42,7 @@ def sendWords(words):
 	Send words to unity, which is constantly read by unity
 	"""
 	try:
-		print('get words : ' + words)
+		print('You said : ' + words)
 		url = 'http://localhost:4000?' + words
 		sendRequest(url)
 	except IOError:

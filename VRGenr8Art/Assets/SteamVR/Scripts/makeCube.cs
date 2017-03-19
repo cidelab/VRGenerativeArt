@@ -65,7 +65,20 @@ public class makeCube : MonoBehaviour
         Debug.Log(sf.DataProcess(inputString));
         switch (sf.DataProcess(inputString))
         {
+            case "small":
+                ySize = ySize - span;
+                xSize = xSize - span;
+                zSize = zSize - span;
+                break;
+            case "big":
+                ySize = ySize + span;
+                xSize = xSize + span;
+                zSize = zSize + span;
+                break;
             case "rotate X":
+                rotX = rotX + span;
+                break;
+            case "rotate":
                 rotX = rotX + span;
                 break;
             case "rotate Y":
@@ -80,14 +93,20 @@ public class makeCube : MonoBehaviour
             case "scale Y":
                 ySize = ySize + span;
                 break;
+            case "scale why":
+                ySize = ySize + span;
+                break;
             case "scale Z":
+                zSize = zSize + span;
+                break;
+            case "scale Zeed":
                 zSize = zSize + span;
                 break;
             case "move left":
                 zPos = zPos + span;
                 break;
             case "move right":
-                zPos = zPos + span;
+                zPos = zPos - span;
                 break;
             case "move forward":
                 xPos = xPos + span;
@@ -98,7 +117,13 @@ public class makeCube : MonoBehaviour
             case "move up":
                 yPos = yPos + span;
                 break;
+            case "up":
+                yPos = yPos + span;
+                break;
             case "move down":
+                yPos = yPos - span;
+                break;
+            case "down":
                 yPos = yPos - span;
                 break;
             case "red":

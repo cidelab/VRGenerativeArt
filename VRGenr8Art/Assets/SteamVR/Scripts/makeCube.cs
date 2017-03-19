@@ -57,8 +57,7 @@ public class makeCube : MonoBehaviour
 
     public void setString(string newStr)
     {
-        inputString = newStr;
-        Debug.Log(inputString);
+        inputString = newStr.Replace("%20", " ");
     }
     private void UpdateParameters()
     {

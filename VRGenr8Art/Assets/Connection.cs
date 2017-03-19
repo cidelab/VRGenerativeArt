@@ -9,7 +9,7 @@ using System.Text;
 public class Connection : MonoBehaviour
 {
     static HttpListener _httpListener = new HttpListener();
-    static String[] sendStrs = null;
+    static String sendStrs = null;
     // Use this for initialization
     void Start()
     {
@@ -22,7 +22,7 @@ public class Connection : MonoBehaviour
         _responseThread.Start(); // start the response thread
     }
 
-    public static void sendOutput(String[] items)
+    public static void sendOutput(String items)
     {
         sendStrs = items;
     }
@@ -31,12 +31,9 @@ public class Connection : MonoBehaviour
     {
         if(sendStrs != null)
         {
-            foreach (String item in sendStrs)
+            foreach (makeCube obj in GameObject.FindObjectsOfType<makeCube>())
             {
-                foreach (makeCube obj in GameObject.FindObjectsOfType<makeCube>())
-                {
-                    obj.setString(item);
-                }
+                obj.setString(sendStrs);
             }
             sendStrs = null;
         }
@@ -56,9 +53,8 @@ public class Connection : MonoBehaviour
             //context.Response.KeepAlive = false; // set the KeepAlive bool to false
             context.Response.Close(); // close the connection
             Debug.Log("Respone given to a request.");
-            
-            String[] items = query.Split('&');
-            sendOutput(items);
+
+            sendOutput(query);
         }
     }
 }

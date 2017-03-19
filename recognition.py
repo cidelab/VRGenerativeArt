@@ -39,12 +39,10 @@ def sendWords(words):
 	"""
 	try:
 		print('get words : ' + words)
-		url = 'http://localhost:4000?words=' + words
+		url = 'http://localhost:4000?' + words
 		sendRequest(url)
 	except IOError:
-		print('Error')
-	else :
-		print('Error')
+		print('Error in the connection.')
 
 def listenAndCompute():
     while True:

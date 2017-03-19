@@ -37,10 +37,14 @@ def sendWords(words):
 	"""
 	Send words to unity, which is constantly read by unity
 	"""
-	print('get words : ' + words)
-	url = 'http://localhost:4000?words=' + words
-	sendRequest(url)
-	return
+	try:
+		print('get words : ' + words)
+		url = 'http://localhost:4000?words=' + words
+		sendRequest(url)
+	except IOError:
+		print('Error')
+	else :
+		print('Error')
 
 def listenAndCompute():
     while True:

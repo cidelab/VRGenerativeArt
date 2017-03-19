@@ -27,7 +27,8 @@ public class makeCube : MonoBehaviour
     public float rotZ = 0;
 
     Assets.SteamVR.Scripts.StringFilter sf = new Assets.SteamVR.Scripts.StringFilter();
-    public string s = "Can you move left please";
+    public string inputString = "";
+
     void Start()
     {
         if (sf.DataProcess("hey build me a box tra la la la") == "box")
@@ -39,8 +40,8 @@ public class makeCube : MonoBehaviour
     void Update()
     {
 
-        //update parameters...
-        UpdateParameters();
+            //update parameters...
+            UpdateParameters();
         
             float r = checkMinMax(Red);
             float g = checkMinMax(Green);
@@ -54,9 +55,14 @@ public class makeCube : MonoBehaviour
             myCube.GetComponent<Renderer>().material.color = clr;
     }
 
+    public void setString(string newStr)
+    {
+        inputString = newStr;
+        Debug.Log(inputString);
+    }
     private void UpdateParameters()
     {
-        switch (sf.DataProcess(s))
+        switch (sf.DataProcess(inputString))
         {
             case "scale in x":
                 xSize = xSize + span;
@@ -95,7 +101,7 @@ public class makeCube : MonoBehaviour
                 clr = Color.blue;
                 break;
         }
-        s = "";
+        inputString = "";
     } 
 
     private float checkMinMax(float r)
@@ -108,6 +114,5 @@ public class makeCube : MonoBehaviour
         }
 
         return r;
-
     }
 }

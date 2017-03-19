@@ -1,7 +1,7 @@
 import speech_recognition as sr
 import requests
 from time import time
-
+from pygame import mixer # Load the required library
 ##### HELPER FUNCTIONS TO CONVERT SPEECH TO TEXT USIGN MSFT BING SPEECH API
 
 ##### MODIFY process for whatever preprocessing you want to do
@@ -24,6 +24,7 @@ def convertToText(audio):
         output = r.recognize_bing(audio, key=BING_KEY, language = "en-US", show_all = False)
     except sr.UnknownValueError:
         # print("Microsoft Bing Voice Recognition could not understand audio")
+        openAudio('audio/not_understand.mp3')
         output = None
     except sr.RequestError as e:
         print("Could not request results from Microsoft Bing Voice Recognition service; {0}".format(e))
@@ -54,6 +55,12 @@ def listenAndCompute():
             else:
                 break
     return
+
+def openAudio(path):
+	mixer.init()
+	# 'audio/yellow.mp3'
+	mixer.music.load(path) 
+	mixer.music.play()
 
 if __name__ == "__main__":
     BING_KEY = "d6d31a805fca4a9187b7c797fcc50bef" # Microsoft Bing Voice Recognition API keys 32-character lowercase hexadecimal strings

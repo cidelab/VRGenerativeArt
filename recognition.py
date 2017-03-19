@@ -1,10 +1,12 @@
 import speech_recognition as sr
 import requests
+import random
 from time import time
 from pygame import mixer # Load the required library
 ##### HELPER FUNCTIONS TO CONVERT SPEECH TO TEXT USIGN MSFT BING SPEECH API
 
 ##### MODIFY process for whatever preprocessing you want to do
+
 def process(output):
     """
     Whatever preprocessing step you want to do strings recognized
@@ -24,7 +26,8 @@ def convertToText(audio):
         output = r.recognize_bing(audio, key=BING_KEY, language = "en-US", show_all = False)
     except sr.UnknownValueError:
         # print("Microsoft Bing Voice Recognition could not understand audio")
-        openAudio('audio/not_understand.mp3')
+        if random.random() <= 0.34 :
+        	playAudio('audio/not_understand.mp3')
         output = None
     except sr.RequestError as e:
         print("Could not request results from Microsoft Bing Voice Recognition service; {0}".format(e))
@@ -46,24 +49,38 @@ def sendWords(words):
 		print('Error in the connection.')
 
 def listenAndCompute():
+    dict = {}
+    count = 0
     while True:
         audio = listenMicrophone()
         output = convertToText(audio)
         if output:
+            count += 1
             if output is not 'stop':
                 sendWords(output)
+                if 'yellow' in output :
+                	dict['yellow'] = 1
+                elif 'left' in output :
+                	dict['left'] = 1
+                if count >= 5 and not 'yellow' in dict :
+                	playAudio('audio/yellow.mp3')
+                elif count >= 5 and not 'left' in dict :
+                	playAudio('audio/move_left.mp3')
             else:
                 break
     return
 
-def openAudio(path):
-	mixer.init()
+def playAudio(path):
+	mixer.init(frequency=2000)
 	# 'audio/yellow.mp3'
 	mixer.music.load(path) 
 	mixer.music.play()
+	while mixer.music.get_busy() == True:
+		continue
 
 if __name__ == "__main__":
     BING_KEY = "d6d31a805fca4a9187b7c797fcc50bef" # Microsoft Bing Voice Recognition API keys 32-character lowercase hexadecimal strings
-    r = sr.Recognizer()
+    r = sr.Recognizer()    
+    playAudio('audio/new_cube.mp3')
     # function to update the file
     listenAndCompute()

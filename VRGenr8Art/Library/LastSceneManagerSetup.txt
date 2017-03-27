@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/SteamVR/Scenes/BuildCube.unity
+- path: Assets/SteamVR/Scenes/Fractal.unity
   isLoaded: 1
   isActive: 1

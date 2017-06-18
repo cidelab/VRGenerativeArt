@@ -25,9 +25,9 @@ def convertToText(audio):
     try:
         output = r.recognize_bing(audio, key=BING_KEY, language = "en-US", show_all = False)
     except sr.UnknownValueError:
-        # print("Microsoft Bing Voice Recognition could not understand audio")
-        if random.random() <= 0.34 :
-        	playAudio('audio/not_understand.mp3')
+        print("Microsoft Bing Voice Recognition could not understand audio")
+        #if random.random() <= 0.34 :
+        	#playAudio('audio/not_understand.mp3')
         output = None
     except sr.RequestError as e:
         print("Could not request results from Microsoft Bing Voice Recognition service; {0}".format(e))
@@ -58,14 +58,14 @@ def listenAndCompute():
             count += 1
             if output is not 'stop':
                 sendWords(output)
-                if 'yellow' in output :
-                	dict['yellow'] = 1
-                elif 'left' in output :
-                	dict['left'] = 1
-                if count >= 5 and not 'yellow' in dict :
-                	playAudio('audio/yellow.mp3')
-                elif count >= 5 and not 'left' in dict :
-                	playAudio('audio/move_left.mp3')
+                #if 'yellow' in output :
+                	#dict['yellow'] = 1
+                #elif 'left' in output :
+                	#dict['left'] = 1
+                #if count >= 5 and not 'yellow' in dict :
+                	#playAudio('audio/yellow.mp3')
+              #  elif count >= 5 and not 'left' in dict :
+                	#playAudio('audio/move_left.mp3')
             else:
                 break
     return
@@ -79,8 +79,8 @@ def playAudio(path):
 		continue
 
 if __name__ == "__main__":
-    BING_KEY = "d6d31a805fca4a9187b7c797fcc50bef" # Microsoft Bing Voice Recognition API keys 32-character lowercase hexadecimal strings
+    BING_KEY = "5171bbb6346d4da8a02a00c06f248280" #"d6d31a805fca4a9187b7c797fcc50bef" # Microsoft Bing Voice Recognition API keys 32-character lowercase hexadecimal strings
     r = sr.Recognizer()    
-    playAudio('audio/new_cube.mp3')
+    #playAudio('audio/new_cube.mp3')
     # function to update the file
     listenAndCompute()
